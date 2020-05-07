@@ -1,0 +1,25 @@
+.DS_Store
+.idea
+target
+logs
+log/
+out/
+project/project/
+project/src/
+src/test/scala-2.11/
+
+.vscode
+.bloop
+.metals
+metals.sbt
+
+.ensime
+.ensime_cache
+ensime-langserver.log
+pc.stdout.log
+
+src/test/test.iml
+src/main/main.iml
+
+# sonarqube
+.scannerwork
