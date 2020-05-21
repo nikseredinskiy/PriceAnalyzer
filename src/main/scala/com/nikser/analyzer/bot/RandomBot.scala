@@ -102,4 +102,18 @@ class RandomBot(
       }
     }
   }
+
+  onCommand("draw_admin") { implicit msg =>
+    withArgs { key =>
+      val deviceKey = key.mkString("")
+      if (deviceKey.isEmpty) {
+        reply(s"${Provider.invalidMessage}\nNo device key passed. Call /devices and copy key after |").void
+      } else {
+        priceAnalyzerService.draw(deviceKey).map({
+          case Seq() => reply(s"${Provider.invalidMessage}\nNo devices attached to the key = $deviceKey").void
+          case images if images.nonEmpty => images.foreach(image => request(SendPhoto(msg.source, image)).void)
+        })
+      }
+    }
+  }
 }

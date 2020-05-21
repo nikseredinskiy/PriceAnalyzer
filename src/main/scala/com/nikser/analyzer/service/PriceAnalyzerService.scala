@@ -106,6 +106,10 @@ class PriceAnalyzerService(
     getAllItems(userId).filter(_.exists(_._1.key == deviceKey)).flatMap(getInputFiles)
   }
 
+  def draw(deviceKey: String): Future[Seq[InputFile]] = {
+    getAllItems.map(_.filter(_._1.key == deviceKey)).flatMap(getInputFiles)
+  }
+
   def drawAll(userId: Long): Future[Seq[InputFile]] = {
     getAllItems(userId).flatMap(getInputFiles)
   }

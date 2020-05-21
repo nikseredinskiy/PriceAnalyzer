@@ -18,7 +18,7 @@ class DrawService(
       println(s"ItemPrices count : ${itemPrices.size}")
       val datePrices = itemPrices.groupBy(_.shopId).map(k => {
         println(s"Dates for ${k._1} = ${k._2.map(_.date).mkString(" | ")}")
-        k._1 -> k._2.map(i => (i.date, i.price.toInt))
+        k._1 -> k._2.groupBy(_.date).map {case (k, v) => k -> v.head}.map {case (_,v) => v}.toSeq.map(i => (i.date, i.price.toInt))
       })
       (item.key, priceChart.drawChart(item, datePrices))
     }}
