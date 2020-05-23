@@ -1,1 +1,1 @@
-worker: sh target/universal/stage/bin/price-analyzer
+worker: target/universal/stage/bin/price-analyzer
